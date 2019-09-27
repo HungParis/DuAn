@@ -3,14 +3,16 @@ package com.example.duan;
 import androidx.annotation.NonNull;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
-import android.widget.Toolbar;
+
 
 
 import com.example.duan.Adapter.ViewpaperAdapter;
@@ -96,18 +98,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-       /*  //Disable ViewPager Swipe
-       viewPager.setOnTouchListener(new View.OnTouchListener()
-        {
-            @Override
-            public boolean onTouch(View v, MotionEvent event)
-            {
-                return true;
-            }
-        });
-        */
-
         setupViewPager(viewPager);
     }
 
@@ -125,5 +115,29 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(fragGiohang);
         adapter.addFragment(fragTaikhoan);
         viewPager.setAdapter(adapter);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu3cham, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.btthongtin) {
+            return true;
+        }
+        if (id == R.id.btdangxuat) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
