@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Du An</string>
+    <string name="title_home">Trang chủ</string>
+    <string name="title_giohang">Giỏ hàng</string>
+    <string name="title_dao">Dạo chợ</string>
+    <string name="title_taikhoan">Tài khoản</string>
+    <string name="title_tintuc">Tin tức</string>
+</resources>
