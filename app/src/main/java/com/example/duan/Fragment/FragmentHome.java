@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -34,6 +35,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.bumptech.glide.Glide;
 
+import com.example.duan.MODE.MyAdapter;
+import com.example.duan.MODE.Review;
 import com.example.duan.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -55,7 +58,7 @@ import kotlin.Unit;
  */
 public class FragmentHome extends Fragment {
 
-
+    RecyclerView recyclerView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,7 +70,19 @@ public class FragmentHome extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_fragment_home, container, false);
         final FlipperLayout flipperLayout = v.findViewById(R.id.fli);
+        recyclerView = v.findViewById(R.id.recyeview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        LinearLayoutManager horizontalLayoutManager
+                = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(horizontalLayoutManager);
+        Review itemsData[] = {new Review(R.drawable.ic_gio, "aa"),
+                new Review(R.drawable.ic_account, "aa"),
+                new Review(R.drawable.ic_home, "aaa"),
+                new Review(R.drawable.ic_dangxuat, "aaa"),
+                new Review(R.drawable.ic_news, "aaa"),
+                new Review(R.drawable.ic_thongtin, "aaa")};
 
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         Toolbar toolbar =(Toolbar)v.findViewById(R.id.toolbar);
         //for crate home button
         AppCompatActivity activity = (AppCompatActivity) getActivity();
@@ -116,6 +131,8 @@ public class FragmentHome extends Fragment {
                 e.printStackTrace();
             }
             flipperLayout.addFlipperView(view);
+            MyAdapter mAdapter = new MyAdapter(itemsData);
+            recyclerView.setAdapter(mAdapter);
         }
 
         return v;
